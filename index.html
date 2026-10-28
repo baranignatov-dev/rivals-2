@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>RIVALS 2 — Arena Preview</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- ============================ MENU ============================ -->
+      <section class="screen menu-screen" id="menu">
+        <header class="brand">
+          <div class="logo">RIVALS <span>2</span></div>
+          <p class="tagline">50-fighter combat arena · playable preview of the design doc</p>
+        </header>
+
+        <div class="menu-grid">
+          <div class="panel">
+            <h2><b>1</b> Map</h2>
+            <div class="map-list" id="map-list"></div>
+          </div>
+
+          <div class="panel">
+            <h2><b>2</b> Mode</h2>
+            <div class="mode-list" id="mode-list"></div>
+            <p class="panel-note" id="mode-note"></p>
+          </div>
+
+          <div class="panel wide">
+            <h2><b>3</b> Fighter</h2>
+            <div class="char-list" id="char-list"></div>
+          </div>
+        </div>
+
+        <div class="menu-footer">
+          <div class="progress" id="progress"></div>
+          <button class="primary" id="start-btn">ENTER THE ARENA</button>
+        </div>
+      </section>
+
+      <!-- ============================ GAME ============================ -->
+      <section class="screen game-screen hidden" id="game">
+        <canvas id="arena"></canvas>
+
+        <div class="hud">
+          <div class="hud-top">
+            <div class="stat">
+              <span class="label">Eliminations</span>
+              <strong id="hud-score">0 / 8</strong>
+            </div>
+            <div class="timer" id="hud-timer">5:00</div>
+            <div class="stat right">
+              <span class="label">Leader</span>
+              <strong id="hud-leader">—</strong>
+            </div>
+          </div>
+
+          <div class="boss-bar hidden" id="boss-bar">
+            <span id="boss-name">BOSS</span>
+            <div class="bar"><i id="boss-fill"></i></div>
+          </div>
+
+          <div class="banner hidden" id="banner">
+            <strong id="banner-main"></strong>
+            <span id="banner-sub"></span>
+          </div>
+
+          <ul class="killfeed" id="killfeed"></ul>
+
+          <div class="hud-bottom">
+            <div class="vitals">
+              <div class="hp-line">
+                <span class="hp-label">HP</span>
+                <div class="bar hp"><i id="hp-fill"></i></div>
+                <b id="hp-text">100</b>
+              </div>
+              <button class="ability" id="ability" type="button">
+                <span class="key">Q</span>
+                <span class="ability-body">
+                  <strong id="ability-name">Ability</strong>
+                  <small id="ability-hint"></small>
+                </span>
+                <span class="cd" id="ability-cd"></span>
+              </button>
+              <div class="char-chip">
+                <span class="chip-emoji" id="char-emoji">⚙️</span>
+                <span>
+                  <strong id="char-name">Omega</strong>
+                  <small id="char-role">Balanced</small>
+                </span>
+              </div>
+            </div>
+            <canvas class="minimap" id="minimap"></canvas>
+          </div>
+
+          <div class="controls">
+            WASD move · mouse aim · left click / space fire · Q or right click ability · P pause · Esc menu
+          </div>
+
+          <div class="overlay hidden" id="death-screen">
+            <strong>ELIMINATED</strong>
+            <span id="death-sub">respawning…</span>
+          </div>
+          <div class="overlay hidden" id="pause-screen">
+            <strong>PAUSED</strong>
+            <span>press P to resume</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================== RESULTS ========================== -->
+      <section class="screen results-screen hidden" id="results">
+        <div class="result-card">
+          <div class="outcome" id="outcome">VICTORY</div>
+          <p class="result-sub" id="result-sub"></p>
+          <div class="stats-row" id="result-stats"></div>
+          <div class="rewards" id="result-rewards"></div>
+          <table class="board" id="result-board"></table>
+          <div class="actions">
+            <button class="primary" id="again-btn">PLAY AGAIN</button>
+            <button id="menu-btn">CHANGE LOADOUT</button>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

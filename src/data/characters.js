@@ -1,0 +1,98 @@
+// Fighter roster — stats taken from the Rivals 2 design doc (GAME_PREVIEW.md).
+// Doc stats: Blade 18/30/80, Nova 16/35/70, Titan 12/20/150, Omega 15/25/100.
+// Speed is scaled x16 into world units per second.
+
+export const CHARACTERS = {
+  blade: {
+    key: 'blade',
+    name: 'Blade',
+    title: 'The Assassin',
+    emoji: '🗡️',
+    color: '#4ade80',
+    glow: 'rgba(74, 222, 128, 0.55)',
+    maxHp: 80,
+    speed: 288,
+    damage: 30,
+    attackCd: 0.26,
+    armor: 0,
+    proj: { speed: 900, life: 0.24, radius: 8, color: '#bbf7d0', splash: 0 },
+    role: 'Hit & Run · Burst',
+    rating: { speed: 9, damage: 9, health: 3 },
+    blurb: 'Blindingly fast, deletes isolated targets. One Titans bash really hurts.',
+    ability: {
+      name: 'Shadow Strike',
+      cd: 7,
+      hint: 'Teleport behind the nearest enemy and slash for 60 damage.',
+    },
+  },
+  nova: {
+    key: 'nova',
+    name: 'Nova',
+    title: 'The Mage',
+    emoji: '🔮',
+    color: '#a78bfa',
+    glow: 'rgba(167, 139, 250, 0.55)',
+    maxHp: 70,
+    speed: 256,
+    damage: 35,
+    attackCd: 0.5,
+    armor: 0,
+    proj: { speed: 640, life: 0.85, radius: 11, color: '#ddd6fe', splash: 46 },
+    role: 'Ranged · Area Control',
+    rating: { speed: 6, damage: 10, health: 2 },
+    blurb: 'Highest damage in the roster. Hold the long lanes and blast chokepoints.',
+    ability: {
+      name: 'Energy Blast',
+      cd: 9,
+      hint: 'Detonate an area blast at your cursor for 55 damage.',
+    },
+  },
+  titan: {
+    key: 'titan',
+    name: 'Titan',
+    title: 'The Tank',
+    emoji: '🛡️',
+    color: '#fbbf24',
+    glow: 'rgba(251, 191, 36, 0.55)',
+    maxHp: 150,
+    speed: 192,
+    damage: 20,
+    attackCd: 0.55,
+    armor: 0.15,
+    proj: { speed: 540, life: 0.2, radius: 17, color: '#fde68a', splash: 0 },
+    role: 'Frontline · Protector',
+    rating: { speed: 3, damage: 5, health: 10 },
+    blurb: 'Slow and immovable. Soaks damage and shoves enemies out of position.',
+    ability: {
+      name: 'Shield Bash',
+      cd: 11,
+      hint: 'Brace for 5s — incoming damage cut by half.',
+    },
+  },
+  omega: {
+    key: 'omega',
+    name: 'Omega',
+    title: 'The Balanced',
+    emoji: '⚙️',
+    color: '#38bdf8',
+    glow: 'rgba(56, 189, 248, 0.55)',
+    maxHp: 100,
+    speed: 240,
+    damage: 25,
+    attackCd: 0.36,
+    armor: 0,
+    proj: { speed: 780, life: 0.58, radius: 9, color: '#bae6fd', splash: 0 },
+    role: 'Adaptable · All-rounder',
+    rating: { speed: 6, damage: 7, health: 7 },
+    blurb: 'No weak stat, no free win. Power Surge flips any close fight.',
+    ability: {
+      name: 'Power Surge',
+      cd: 13,
+      hint: '+50% speed and damage for 6 seconds.',
+    },
+  },
+};
+
+export const CHARACTER_KEYS = Object.keys(CHARACTERS);
+
+export const BOT_NAMES = ['Ravager', 'Vex', 'Nyx', 'Rook', 'Zephyr', 'Hexa', 'Kilo'];
