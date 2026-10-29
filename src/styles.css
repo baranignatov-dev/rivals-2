@@ -158,6 +158,18 @@ textarea {
   background: transparent;
 }
 
+.btn-code {
+  border-color: rgba(77, 216, 255, 0.45);
+  color: var(--cyan);
+  background: rgba(77, 216, 255, 0.08);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.btn-code:hover {
+  border-color: var(--cyan);
+  background: rgba(77, 216, 255, 0.16);
+}
+
 .btn-sm {
   padding: 6px 10px;
   font-size: 12px;
@@ -704,11 +716,12 @@ textarea {
   }
 }
 
+/* Narrow screens: canvas, every tool and the code panel all stay on screen. */
 @media (max-width: 900px) {
   .workspace {
     display: flex;
     flex-direction: column;
-    overflow-y: auto;
+    overflow: hidden;
     padding: 8px;
     gap: 8px;
   }
@@ -716,34 +729,54 @@ textarea {
   .stage-col {
     order: 1;
     flex: none;
-    min-height: 270px;
+    min-height: 0;
   }
 
   .stage {
-    min-height: 250px;
+    flex: none;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    max-height: 46vh;
+    min-height: 0;
+  }
+
+  .stage-hint {
+    display: none;
   }
 
   .toolrail {
     order: 2;
     flex: none;
-    flex-direction: row;
-    overflow-x: auto;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 4px;
     padding: 6px;
+    overflow: visible;
   }
 
   .tool {
-    min-width: 64px;
-    flex: none;
+    min-width: 0;
+    padding: 6px 2px;
+  }
+
+  .tool-label {
+    font-size: 9.5px;
+    text-align: center;
+    line-height: 1.2;
   }
 
   .panel {
     order: 3;
-    flex: none;
-    min-height: 360px;
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+
+  .panel-body {
+    padding: 8px;
   }
 
   .code-editor {
-    min-height: 190px;
+    min-height: 110px;
   }
 
   .play-stats {
@@ -758,13 +791,9 @@ textarea {
     gap: 6px;
   }
 
-  .brand-name {
-    display: none;
-  }
-
+  .brand-name,
   .title-input {
-    order: 3;
-    flex-basis: 100%;
+    display: none;
   }
 
   .topbar-actions {

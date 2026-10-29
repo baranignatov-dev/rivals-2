@@ -92,7 +92,30 @@ function onTouch(player) {
 }
 `
 
-export function starterScene() {
+export const BLANK_SCRIPT = `// Level script — this code really runs, every frame.
+// Try:  api.say('Hello!', 2)
+//       api.spawn({ type: 'platform', x: 700, y: 400, w: 200, h: 24 })
+
+function onStart() {
+  api.log('Level script started')
+}
+`
+
+// A clean canvas to build on: just a floor and a start point.
+export function blankScene() {
+  return {
+    name: 'My Game',
+    gravity: 1900,
+    script: BLANK_SCRIPT,
+    objects: [
+      { ...newObject('platform', 0, 820, 1600, 80) },
+      { ...newObject('spawn', 120, 760, 44, 60) },
+    ],
+  }
+}
+
+// A finished example you can load, study or change.
+export function demoScene() {
   const make = (type, x, y, w, h, extra = {}) => {
     const o = newObject(type, x, y, w, h)
     return { ...o, ...extra }
@@ -125,20 +148,8 @@ export function starterScene() {
   }
 }
 
-export function emptyScene() {
-  return {
-    name: 'Untitled Game',
-    gravity: 1900,
-    script: LEVEL_SCRIPT_EXAMPLE,
-    objects: [
-      { ...newObject('platform', 0, 820, 1600, 80) },
-      { ...newObject('spawn', 120, 760, 44, 60) },
-    ],
-  }
-}
-
 export function normalizeScene(raw) {
-  if (!raw || typeof raw !== 'object' || !Array.isArray(raw.objects)) return starterScene()
+  if (!raw || typeof raw !== 'object' || !Array.isArray(raw.objects)) return blankScene()
   const objects = raw.objects
     .filter((o) => o && typeof o === 'object' && TYPE_COLORS[o.type])
     .map((o) => ({

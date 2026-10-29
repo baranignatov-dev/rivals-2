@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { TOOLS, emptyScene, normalizeScene, starterScene } from './engine/scene'
+import { TOOLS, blankScene, demoScene, normalizeScene } from './engine/scene'
 import EditorStage from './components/EditorStage'
 import ToolPalette from './components/ToolPalette'
 import Inspector from './components/Inspector'
@@ -7,7 +7,7 @@ import ScriptPanel from './components/ScriptPanel'
 import ConsolePanel from './components/ConsolePanel'
 import PlayStage from './components/PlayStage'
 
-const STORAGE_KEY = 'forge-game-v1'
+const STORAGE_KEY = 'forge-game-v2'
 const clone = (value) => JSON.parse(JSON.stringify(value))
 
 function loadSaved() {
@@ -21,7 +21,7 @@ function loadSaved() {
 }
 
 export default function App() {
-  const [scene, setScene] = useState(() => loadSaved() || starterScene())
+  const [scene, setScene] = useState(() => loadSaved() || blankScene())
   const [tool, setTool] = useState('select')
   const [selectedId, setSelectedId] = useState(null)
   const [tab, setTab] = useState('build')
@@ -115,9 +115,22 @@ export default function App() {
   const newLevel = () => {
     if (!window.confirm('Start a fresh level? This replaces what is on the canvas.')) return
     pushHistory()
-    setScene(emptyScene())
+    setScene(blankScene())
     setSelectedId(null)
     setTab('build')
+  }
+
+  const loadDemo = () => {
+    if (!window.confirm('Load the example level? It replaces what is on the canvas.')) return
+    pushHistory()
+    setScene(demoScene())
+    setSelectedId(null)
+    setTab('build')
+  }
+
+  const openCode = () => {
+    setScriptTarget(selectedId ? 'object' : 'level')
+    setTab('script')
   }
 
   const changeScript = (next) => {
@@ -202,8 +215,14 @@ export default function App() {
           <button type="button" className="btn btn-ghost btn-sm" onClick={exportScene}>
             Export
           </button>
+          <button type="button" className="btn btn-ghost btn-sm" onClick={loadDemo}>
+            Demo
+          </button>
           <button type="button" className="btn btn-ghost btn-sm" onClick={newLevel}>
             New
+          </button>
+          <button type="button" className="btn btn-code" onClick={openCode}>
+            {'{ }'} Code
           </button>
           <button type="button" className="btn btn-primary" onClick={() => setPlaying(true)}>
             ▶ Play

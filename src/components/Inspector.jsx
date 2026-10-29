@@ -45,7 +45,7 @@ export default function Inspector({ scene, selected, onScene, onObject, onEditSc
         <section className="card">
           <h3 className="card-title">How it works</h3>
           <ol className="steps">
-            <li>Pick a tool on the left.</li>
+            <li>Pick a tool from the palette.</li>
             <li>Drag on the canvas to build ground, tap to drop things.</li>
             <li>Tap anything to select it and give it a script.</li>
             <li>Hit Play. Everything is free — no coins, no unlocks.</li>
